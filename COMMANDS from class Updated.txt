@@ -1,0 +1,99 @@
+Docker commands : 
+
+#  docker ps ( to show list of running containers)
+#  docker stop ( to stop the container)
+#  docker rm  -f  CONTAINER/ web ( delete running container)
+#  docker volume ls ( to check out the options)
+#  docker pull IMAGE ( To download an image)
+#  history | grep pull ( to pull the history )
+#  docker pull jenkins/jenkins:lts
+#  docker exec -it ( execute interactive mode)
+#  docker exec - it (jenkins container id) bash 
+$  hostname - i
+df   -kh (disk space)
+#  docker stop 
+#  docker ps  -a ( to view list of containers)
+
+
+docker is container image, if config is not installed
+df  -k
+
+Linux commands : 
+
+#  ls - (directory listing)
+#  ls  -al (- formatted listing with hidden files
+#  pwd - show current directory 
+#  rm file - delete file
+#  cd dir - change directory
+# cd - change to home
+#  home directory - cd~
+#  ifconfig ( interaface configuration)
+#  hostname  -i ( ip address) 
+#  hostname  -f( internal domain)
+
+
+dd to delete entire line
+x for the one word
+
+shell script : 
+#  vi test.sh --> (new file - insert) 
+#  cat test.sh
+#  bash test.sh
+#  touch test2.txt
+#  lst.lrt
+#  vi test2.txt
+
+Directories:
+cd=change directory
+#cd ~ (desktop)
+#pwd (present working directory)
+#sudo -i (root)
+#cd /etc/systemd/ (specific operations)
+#mkdir dummy (mkdir= make directory;making a dummy directory in the file system)
+
+Deleting Docker:
+
+#docker ps
+#docker stop [container id] Ex: docker stop 74b655066370
+#docker ps -a (history of old docker process which is not running now) 
+#docker rm [id] Ex: docker rm 74b655066370
+
+#docker volume ls 
+#docker volume
+#docker volume rm [volume name] Ex:docker volume jenkins_home
+
+Linux:
+chmod:- command to change permissions in linux 
+Ex:#chmod 400 file.txt
+
+sudo users/root --> super user will have full access
+#id
+#whoami (check whether we are in root or non root)
+
+#useradd hacker
+#passwd hacker
+
+#docker exec -it [id] bash (login to container)
+#echo $? (exit code of previous code) output=0 means success;non zero failure of command
+
+Day7:
+
+#docker run -it -p 80:80 nginx
+
+portmapping by using -p option
+
+to check whether port is free:
+#netstat -anp | grep [port number] Ex:netstat -anp | grep 8111 
+#ps -ef | grep [process id(pid)]        Ex:ps -ef | grep 10357
+#netstat -anp | grep java 
+
+#tail -f nohup.out
+#ps -ef | grep java
+
+#find / -name [filename] 		Ex:find / -name Dockerfile
+#docker kill [id]
+
+
+
+
+
