@@ -1,0 +1,41 @@
+
+#Docker Pending Topics:
+
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.18_10
+#COPY target/demo*.jar /opt
+ADD https://github.com/gcpcloudreddy/pylife-devops-demo/archive/refs/heads/master.zip /opt
+EXPOSE 8080
+WORKDIR /tmp
+#CMD java -jar app.jar
+ENTRYPOINT ["ls" ,"-l","/opt/"]
+
+
+RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash \
+    && chmod +x ./kustomize \
+    && mv ./kustomize /usr/local/bin/kustomize
+
+
+    docker push xxx.dockerhub.org.com/image:test2 ## Deafult latest or we can put it as test2
+
+#######
+
+inside-container.
+app.jar 
+
+next time - get jar from cache ? YES/NO
+
+docker build --no-cache . -f dockerfilename 
+
+1)  Kubernetes – cicd / jenkins
+2)  OpenShift  - UI[Redhat]
+
+
+wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz
+
+tar -xvf apache-maven-3.9.1-bin.tar.gz
+
+
+
+
+
+

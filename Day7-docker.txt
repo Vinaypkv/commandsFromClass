@@ -1,0 +1,130 @@
+
+DOCKER ?
+
+Linux Server:
+
+Physical DC --> RACKS/Mainframe / ESX Racks --> Servers [AIX/LINUX/WINDOWS] -->
+
+EACH SYSTEM - CPU , RAM is dedicately Assigned [ Can't Be shared] - usage is below 50% -- 100% we need Pay
+
+CLOUD --? PAY AS YOU USE
+
+VM WARE --> create many VM's in 1 server --> 3 applications [ How IT EVOLVED]
+
+Many Dockers --> Many VM's --> 1 Servers --> 13 Applications [ Use as per the capcity & by doing right Sizing ]
+
+Docker Advantages:
+Isolated environment
+
+15 Houses --> 1 door - individual door for each house ?
+
+What is common for each owner in Apartment ?
+
+1. Parking
+2. water
+3. security
+4. Garden , Main Gate --> Swimming Pool 
+
+## DOCKER TERM 
+ OPerating System shared to the Docker Enginer
+
+Flat Benifits by Owner:
+
+1. His own main door
+2. Own Balcony 
+3. Own bedrooms
+4. Own Spec
+4. Own Parking
+
+## Dedicated container belongs to an application
+
+
+Dependency
+OS --> Libraries so son:
+
+
+docker run -it -p  <HOST PORT80:<Container Port>80 nginx   --> dockerhub
+
+jenkins start - default port 8080
+jenkins access from browser which port ? 8111 , 80 , 6688 [Default vm/server port range 0-65536]
+
+browser --> ip:8111 --> VM --> 8111 <--> 8080 <-> Jenkins/container/application
+
+Server Login -- SSH is the Name / 22 Port
+http - 80
+https - 443
+smtp - 25
+
+
+DOCKER IMAGE --> COllection Layers 
+
+docker run -it -p 80:80 nginx
+
+Unable to find image 'nginx:latest' locally 
+
+
+latest: Pulling from library/nginx
+
+f1f26f570256: Pull complete   --> Docker Layers
+84181e80d10e: Pull complete   --> Docker Layers
+1ff0f94a8007: Pull complete   ""
+d776269cad10: Pull complete          INSTRUCTIONS - BUILDS
+e9427fcfa864: Pull complete
+d4ceccbfc269: Pull complete
+Digest: sha256:f4e3b6489888647ce1834b601c6c06b9f8c03dee6e097e13ed3e28c01ea3ac8c
+
+
+
+DAY 8:
+-----
+
+1. Maven Build + Dccker Build + Docker Push + Docker Deployment [ CD]
+   Shell Script   -- Done
+   Jenkins pipeline
+
+## SHELL WAY ## START
+ls -l
+#rm -Rf pylife-devops-demo
+git clone https://github.com/gcpcloudreddy/pylife-devops-demo.git
+cd pylife-devops-demo
+mvn clean package
+docker build . -t pylifedevops/app29:test
+docker login -u pylifedevops -p dckr_pat_DCaoHJYadQolqu3KkrNOhDEnbr8
+docker push pylifedevops/app29:test
+docker run -p 88:8080 -d pylifedevops/app29:test
+###### STOP ####
+
+git config --global user.email "gcpcloudreddy@gmail.com"
+git config --global user.name "DevOPS Class"
+
+
+####Complete COntinuous Integration Pipeline
+
+#### ROUGH NOTES BELOW
+
+FROM Ubuntu
+MAINTANER devops@gmail.com
+sudo apt-get update
+sudo apt-get -y install nginx
+CMD ["echo", "newdeveloper"]
+
+
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.18_10
+VOLUME /tmp
+COPY target/demo*.jar app.jar
+CMD java -jar app.jar
+
+RUN Jenkins JNLP Agent in Background
+
+nohup java -jar agent.jar -jnlpUrl http://IP:PORT/manage/computer/gcpvm1/jenkins-agent.jnlp -secret <secret> -workDir "/jenkinsws" &
+
+
+
+
+
+
+
+
+
+
+

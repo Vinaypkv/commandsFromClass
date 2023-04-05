@@ -1,0 +1,189 @@
+
+
+kubectl run --image=nginx <name>
+
+kubectl get pods
+
+kubectl exec -it <pod> sh
+
+kubectl logs -f <podname>
+
+kubectl describe pod 
+
+kubectl run --image=nginx webserver
+kubectl describe pod webserver
+kubectl describe pod webserver1
+kubectl run --image=nginx webserver3
+
+## to get info of worker/node in which our pod is running
+kubectl get pods -o wide
+## Below command for deleting the pod from K8S
+kubectl delete pod 
+###################################################################
+
+## kubectl run --image=xxx:latest xxx  --dry-run -o yaml
+
+## CKA --> Prepare the Pod yaml for below app
+  image: xxx:latest
+  port will be 80
+
+## kubectl run --image=xxx:latest xxx 
+
+### Sample K8S Pod YAML Declartion 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+  - name: hello
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80  
+
+
+
+
+## Save above yaml in same structure with yaml/yml extension
+
+kubectl appply -f <filename>.yml
+
+## Delete the pod from k8s -- input is yaml
+
+kubectl delete -f nginx.yml
+
+OR
+
+kubectl delete <podName>
+
+POD --> Sleeping PODS --> Sleeping/Taking Rest [ Another person not allowed]
+
+POD --> like VM --> 80 Port Used --- we should remaining ports 
+
+## Login to specific container by passing -c <containerName>
+kubectl exec -it nginx sh -c hello
+
+
+
+### SAMPEL DEPLOYMENT YAML
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+### Save above file deploy.yaml and apply in K8S
+## Verify your deployment
+kubectl get deployments
+
+delete one pod from above app/deploy and observer on whats happening on the Desired State.
+
+kubectl scale --replicas=5 deployment/nginx-deployment
+
+$ kubectl scale --replicas=3 rs/nginx-deployment-6595874d85
+
+Deployment yml --> apply [ Replicas: 3]
+
+ReplicatSet --> will have how many replicas to be exist
+
+Scale up/down --> should be deployment level.
+
+############################
+
+-p 80:8080 --> access in browser IP:port
+
+How in Kubernetes?
+
+Deployment --> Container Port : 8080 --> Service will map hostport:containerPort --> LB IP/ Internal IP or NodePort / Cluster IP 
+
+#### SERVICE YAML
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  annotations:
+    networking.gke.io/load-balancer-type: "External"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  selector:
+    app: nginx
+  ports:
+  - name: tcp-port
+    protocol: TCP
+    port: 88
+    targetPort: 80
+
+### COPY above file in service.yaml
+and apply like below
+ kubectl apply -f service.yaml
+
+ ### How to verify the service in k8S
+
+ kubectl get services
+
+ ## After getting public IP acccess the APP
+
+
+
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ilb-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ilb-deployment
+  template:
+    metadata:
+      labels:
+        app: ilb-deployment
+    spec:
+      containers:
+      - name: hello-app
+        image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ilb-svc
+  annotations:
+    networking.gke.io/load-balancer-type: "External"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  selector:
+    app: ilb-deployment
+  ports:
+  - name: tcp-port
+    protocol: TCP
+    port: 8080
+    targetPort: 8080        

@@ -1,0 +1,45 @@
+
+
+CI
+
+Script --> Cron - Scheduler - specific interval execution 
+
+report.sh []
+--------------------
+echo "Am new to DevOPS - Used for getting Finance Data "
+-----------------------
+
+Bajaj-Finance
+Loans, Personal --> Home --> Vechicle etc
+EMI --> everymonth 2nd - customer -debit -- BF credit
+
+100000 - 10000 = principal 95K [ Interest is 5 K]
+
+DOS --> IBM DOS Banks --> manualy [ resource + cal memory]
+UNIX OS --> Cron Tab
+
+Scheduler -- allow us to run the scripts on sp time and interval
+
+crontab 
+0 2 * * * PATH/report.sh
+
+User - Journey ?
+
+Manual   -- CheckOUT/GIT/VCS --> Java/NodeJs/Gradle/Python code --> Comiple --> Package --> Artifact [ Continuos Integration - STOP]
+
+*.java --> *.class -> *.jar_0.0.1.RELEASE /war_version[1.0.1] [ dependencies] --> Software/Storage/Artifactory [ JFROG , Nexus , Local Artifacts]
+
+Crontab - schedule - logs has to be looked manually
+
+Jenkins Automation - centralized user-interface and logs are available and i can see the next run interval
+
+
+Continous Delivary:
+
+Artifact --> Prepare [ Inputs - Version Number -1.0.0.RELEASE, AppName: XXX ] --> Download Jar/WAR -- Deploy Jar --> Verify / RollBack --> Notifications  [Prepare+Deploy]
+
+java -jar XXX-0.0.1.RELEASE - Status Zero Success
+
+888888888888888
+
+Server Running Port

@@ -1,0 +1,35 @@
+
+
+GIT REPO XXX [ MASTER, RELEASE , MAIN]
+
+
+git clone <<URL>>
+or  git clone -b <branchName> https://github.com/gcpcloudreddy/devops-demo-xxx.git 
+
+cd repo
+touch/vi filename [write your code/sample data] --> Local workspace
+
+git add <filename> OR git add .
+
+git commit -m "type message here"
+
+git push      ## Pushed the files to Remote Repo -- that are staged
+ 
+git pull      ## gets the latest data/info/metdata
+
+how to create a branch
+
+git branch xxx --> git checkout xxx
+OR
+git checkout -b yyy
+
+Pull Request - from Repo --> Source Branch --> Dest [ Master,develop, release , feature branch]
+
+Write less code - Re-Use IT in Many Apps.
+
+
+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
+
+
+
+

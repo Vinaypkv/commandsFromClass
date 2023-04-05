@@ -1,0 +1,63 @@
+
+Jenkins :
+
+Today's Agenda:
+
+--> Clean Workspace with in pipeline job
+
+--> Archive Artifacts like jar etc ...
+
+
+new VM Setup:
+
+docker
+maven + java11
+java 8
+
+export JAVA_HOME=
+java -version
+1.8.0
+
+jenkins agent
+
+git 
+maven
+docker build pull , push
+
+
+
+
+Docker Chapter Continuation
+
+Docker 
+Docker Build 
+	Set Environment Variables
+	Volume Mounting
+	best practises - ensure docker images is not increasing rapidly
+
+Docker Pull
+Docker Push
+
+docker run 
+docker exec 
+
+GCP Secrest
+AWS Secrets
+ORG Secrets Server
+Hashicorp 
+
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.18_10
+ARG PASS
+ENV PASSWD=${PASS}
+VOLUME /tmp
+COPY target/demo*.jar app.jar
+CMD java -jar app.jar
+
+
+--> docker run -e PWD=sekhar -it pylifedevops/app30:test sh
+
+--> docker build --build-arg PASS=yyyy . 
+
+--build-arg = variable --> container build --> ARG PASS --> ENV PASS={$PASS}
+
+x outside ---------------> y assigned to have x value inside --> and seeting env z = {y}
